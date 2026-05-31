@@ -1,35 +1,7 @@
-DROP TABLE IF EXISTS products;
-
-CREATE TABLE products (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    sku TEXT UNIQUE NOT NULL,
-    name TEXT,
-    stock REAL DEFAULT 0,
-    rrp REAL,
-    mpb REAL,
-    pcs INTEGER,
-    brp INTEGER,
-    backorder INTEGER DEFAULT 0,
-    force_in_stock INTEGER DEFAULT 0,
-    cht_product_id TEXT,
-    cht_product_name TEXT,
-    cht_product_url TEXT,
-    gto_product_id TEXT,
-    gto_product_name TEXT,
-    gto_product_url TEXT,
-    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE IF NOT EXISTS settings (
-    key TEXT PRIMARY KEY,
-    value TEXT
-);
-
 CREATE TABLE IF NOT EXISTS price_schemas (
     schema_id INTEGER PRIMARY KEY AUTOINCREMENT,
     schema_name TEXT NOT NULL UNIQUE
 );
-
 
 CREATE TABLE IF NOT EXISTS price_schema_items (
     item_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -43,7 +15,7 @@ CREATE TABLE IF NOT EXISTS price_schema_items (
 CREATE TABLE IF NOT EXISTS dealers (
     dealer_id INTEGER PRIMARY KEY AUTOINCREMENT,
     username TEXT UNIQUE NOT NULL,
-    password_hash TEXT NOT NULL, 
+    password_hash TEXT NOT NULL,
     first_name TEXT,
     last_name TEXT,
     company_name TEXT,
@@ -65,13 +37,12 @@ CREATE TABLE IF NOT EXISTS dealer_overrides (
 
 CREATE TABLE IF NOT EXISTS stock_ledger (
     record_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    cht_product_id TEXT NOT NULL,       
-    change_type INTEGER NOT NULL,       -- 0: sell 1: new stock
-    amount REAL NOT NULL,               
+    cht_product_id TEXT NOT NULL,
+    change_type INTEGER NOT NULL,
+    amount REAL NOT NULL,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
-
-CREATE INDEX IF NOT EXISTS idx_products_cht_name ON products(cht_product_id);
+CREATE INDEX IF NOT EXISTS idx_products_cht_id ON products(cht_product_id);
 CREATE INDEX IF NOT EXISTS idx_ledger_date ON stock_ledger(created_at);
 CREATE INDEX IF NOT EXISTS idx_ledger_product ON stock_ledger(cht_product_id);

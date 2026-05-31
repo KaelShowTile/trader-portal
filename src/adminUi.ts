@@ -13,7 +13,7 @@ export const generateAdminLoginHtml = (clientId: string) => `
         <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">ST Trader System - Admin</h2>
         
         <div id="g_id_onload"
-            data-client_id="\${clientId}"
+            data-client_id="${clientId}"
             data-callback="handleCredentialResponse"
             data-auto_prompt="false">
         </div>
