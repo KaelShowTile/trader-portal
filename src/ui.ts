@@ -78,9 +78,12 @@ export const generateDealerDashboardHtml = () => `
         tr.shown td.details-control {
             background: url('https://www.datatables.net/examples/resources/details_close.png') no-repeat center center;
         }
-        .variants-table { width: 100%; border-collapse: collapse; margin-top: 10px; margin-bottom: 10px; }
+        table.dataTable.display tbody tr:hover{background: #efefef;}
+        table.dataTable.display tbody tr td{box-shadow: none !important;}
+        .variants-table { width: 100%; border-collapse: collapse; margin: auto 10px; }
         .variants-table th, .variants-table td { border: 1px solid #ddd; padding: 8px; text-align: left; }
         .variants-table th { background-color: #f2f2f2; }
+
     </style>
 </head>
 <body class="bg-gray-100 min-h-screen">
@@ -91,7 +94,7 @@ export const generateDealerDashboardHtml = () => `
                     <img src="https://showtile.com.au/wp-content/uploads/2026/02/st-logo-svg.svg" alt="logo" class="logo" height="50">
                 </div>
                 <div class="flex items-center">
-                    <button id="logoutBtn" class="text-gray-600 hover:text-gray-900">Logout</button>
+                    <button id="logoutBtn" class="text-gray-600 hover:text-gray-900">LOGOUT</button>
                 </div>
             </div>
         </div>
@@ -99,10 +102,10 @@ export const generateDealerDashboardHtml = () => `
 
     <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         <div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6 rounded-t-lg shadow">
-            <h3 class="text-lg leading-6 font-medium text-gray-900">Inventory & Pricing</h3>
+            <h3 class="text-lg leading-6 font-medium text-gray-900">Welcome to ST Trader Portal</h3>
         </div>
-        <div class="bg-white p-4 shadow rounded-b-lg">
-            <table id="productsTable" class="display responsive nowrap w-full" style="width:100%">
+        <div class="bg-white p-8 shadow rounded-b-lg">
+            <table id="productsTable" class="display responsive nowrap w-full" style="width:100%; padding-top: 10px;">
                 <thead>
                     <tr>
                         <th></th>
@@ -152,12 +155,13 @@ export const generateDealerDashboardHtml = () => `
             // Add event listener for opening and closing details
             $('#productsTable tbody').on('click', 'td.details-control', function () {
                 var tr = $(this).closest('tr');
+                tr.addClass('product-parent-row');
                 var row = table.row(tr);
 
                 if (row.child.isShown()) {
                     // This row is already open - close it
                     row.child.hide();
-                    tr.removeClass('shown');
+                    tr.removeClass('shown');    
                 } else {
                     // Open this row
                     row.child(format(row.data())).show();

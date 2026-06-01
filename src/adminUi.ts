@@ -153,7 +153,9 @@ export const generateAdminDashboardHtml = () => `
                     <table class="w-full text-left table-fixed">
                         <thead class="bg-gray-100 sticky top-0 z-10 shadow-sm">
                             <tr class="border-b">
-                                <th class="p-3 w-20 text-center">Active</th>
+                                <th class="p-3 w-24 text-center whitespace-nowrap">
+                                    <input type="checkbox" id="override-select-all" checked onchange="toggleAllCheckboxes('dealer-override-cb', this.checked)" class="w-4 h-4 text-blue-600 rounded align-middle mr-1"><label for="override-select-all" class="cursor-pointer select-none">Active</label>
+                                </th>
                                 <th class="p-3">Product Name</th>
                                 <th class="p-3 w-32 text-gray-500 font-normal text-sm">Schema Price</th>
                                 <th class="p-3 w-40 text-blue-600 font-normal">Override Price</th>
@@ -198,7 +200,9 @@ export const generateAdminDashboardHtml = () => `
                     <table class="w-full text-left table-fixed">
                         <thead class="bg-gray-100 sticky top-0 z-10 shadow-sm">
                             <tr class="border-b">
-                                <th class="p-3 w-20 text-center">Active</th>
+                                <th class="p-3 w-24 text-center whitespace-nowrap">
+                                    <input type="checkbox" id="schema-select-all" checked onchange="toggleAllCheckboxes('schema-product-cb', this.checked)" class="w-4 h-4 text-blue-600 rounded align-middle mr-1"><label for="schema-select-all" class="cursor-pointer select-none">Active</label>
+                                </th>
                                 <th class="p-3">Product Name</th>
                                 <th class="p-3 w-48 text-gray-500 font-normal text-sm">RRP</th>
                                 <th class="p-3 w-40 text-green-700 font-normal">Price</th>
@@ -250,6 +254,10 @@ export const generateAdminDashboardHtml = () => `
         let allDealers = [];
         let allProducts = [];
 
+        function toggleAllCheckboxes(className, isChecked) {
+            document.querySelectorAll('.' + className).forEach(cb => cb.checked = isChecked);
+        }
+
         async function init() {
             // Fetch schemas and products once to cache
             const [schemaData, prodData] = await Promise.all([
@@ -276,6 +284,10 @@ export const generateAdminDashboardHtml = () => `
 
             if(tab === 'dealers') loadDealers();
             if(tab === 'schemas') loadSchemas();
+        }
+
+        function toggleAllCheckboxes(className, isChecked) {
+            document.querySelectorAll('.' + className).forEach(cb => cb.checked = isChecked);
         }
 
         async function logout() {

@@ -152,7 +152,7 @@ app.get('/api/admin/schemas', async (c) => {
 
 app.get('/api/admin/products', async (c) => {
 	const db = c.env.tile_db;
-	const products = await db.prepare('SELECT cht_product_id, MAX(cht_product_name) as cht_product_name, MAX(rrp) as rrp FROM products WHERE cht_product_id IS NOT NULL GROUP BY cht_product_id ORDER BY cht_product_name ASC').all();
+	const products = await db.prepare("SELECT cht_product_id, MAX(cht_product_name) as cht_product_name, MAX(rrp) as rrp FROM products WHERE cht_product_id IS NOT NULL AND cht_product_name IS NOT NULL AND trim(cht_product_name) != '' GROUP BY cht_product_id ORDER BY cht_product_name ASC").all();
 	return c.json({ success: true, products: products.results });
 });
 
