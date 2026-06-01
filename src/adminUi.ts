@@ -154,7 +154,7 @@ export const generateAdminDashboardHtml = () => `
                         <thead class="bg-gray-100 sticky top-0 z-10 shadow-sm">
                             <tr class="border-b">
                                 <th class="p-3 w-24 text-center whitespace-nowrap">
-                                    <input type="checkbox" id="override-select-all" checked onchange="toggleAllCheckboxes('dealer-override-cb', this.checked)" class="w-4 h-4 text-blue-600 rounded align-middle mr-1"><label for="override-select-all" class="cursor-pointer select-none">Active</label>
+                                    <input type="checkbox" id="override-select-all" checked onchange="toggleAllCheckboxes('dealer-override-cb', this.checked)" class="w-4 h-4 text-blue-600 rounded align-middle mr-1" style="margin-bottom: 3px;"><label for="override-select-all" class="cursor-pointer select-none">Active</label>
                                 </th>
                                 <th class="p-3">Product Name</th>
                                 <th class="p-3 w-32 text-gray-500 font-normal text-sm">Schema Price</th>
