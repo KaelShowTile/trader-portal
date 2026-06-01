@@ -200,7 +200,7 @@ export const generateAdminDashboardHtml = () => `
                             <tr class="border-b">
                                 <th class="p-3 w-20 text-center">Active</th>
                                 <th class="p-3">Product Name</th>
-                                <th class="p-3 w-48 text-gray-500 font-normal text-sm">CHT Product ID</th>
+                                <th class="p-3 w-48 text-gray-500 font-normal text-sm">RRP</th>
                                 <th class="p-3 w-40 text-green-700 font-normal">Price</th>
                             </tr>
                         </thead>
@@ -532,7 +532,7 @@ export const generateAdminDashboardHtml = () => `
                         <input type="checkbox" class="schema-product-cb w-4 h-4 text-blue-600 rounded" data-pid="\${p.cht_product_id}" checked>
                     </td>
                     <td class="p-3 font-medium text-gray-800 text-sm">\${p.cht_product_name || 'Unnamed Product'}</td>
-                    <td class="p-3 text-sm text-gray-500">\${p.cht_product_id}</td>
+                    <td class="p-3 text-sm text-gray-500">\${p.rrp != null ? '$' + p.rrp : '-'}</td>
                     <td class="p-3">
                         <div class="relative rounded-md shadow-sm">
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
