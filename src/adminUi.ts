@@ -394,12 +394,12 @@ export const generateAdminDashboardHtml = () => `
             allProducts.forEach(p => {
                 const schemaPrice = schemaPriceMap[p.cht_product_id] !== undefined ? '$' + schemaPriceMap[p.cht_product_id] : '-';
                 const currentOverride = overrideMap[p.cht_product_id];
-                // Checkbox is default checked
+                const isActive = currentOverride !== undefined;
                 
                 tbody.innerHTML += \`
                 <tr class="hover:bg-gray-50">
                     <td class="p-3 text-center">
-                        <input type="checkbox" class="dealer-override-cb w-4 h-4 text-blue-600 rounded" data-pid="\${p.cht_product_id}" checked>
+                        <input type="checkbox" class="dealer-override-cb w-4 h-4 text-blue-600 rounded" data-pid="\${p.cht_product_id}" \${isActive ? 'checked' : ''}>
                     </td>
                     <td class="p-3 font-medium text-gray-800 text-sm">\${p.cht_product_name || p.cht_product_id}</td>
                     <td class="p-3 text-sm text-gray-500">\${schemaPrice}</td>
@@ -536,12 +536,12 @@ export const generateAdminDashboardHtml = () => `
 
             allProducts.forEach(p => {
                 const currentPrice = priceMap[p.cht_product_id];
-                // Checkbox is default checked
+                const isActive = currentPrice !== undefined;
                 
                 tbody.innerHTML += \`
                 <tr class="hover:bg-gray-50">
                     <td class="p-3 text-center">
-                        <input type="checkbox" class="schema-product-cb w-4 h-4 text-blue-600 rounded" data-pid="\${p.cht_product_id}" checked>
+                        <input type="checkbox" class="schema-product-cb w-4 h-4 text-blue-600 rounded" data-pid="\${p.cht_product_id}" \${isActive ? 'checked' : ''}>
                     </td>
                     <td class="p-3 font-medium text-gray-800 text-sm">\${p.cht_product_name || 'Unnamed Product'}</td>
                     <td class="p-3 text-sm text-gray-500">\${p.rrp != null ? '$' + p.rrp : '-'}</td>
