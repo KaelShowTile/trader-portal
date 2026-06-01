@@ -21,6 +21,8 @@ app.onError((err, c) => {
 // --- UI Routes ---
 
 app.get('/', (c) => c.redirect('/dealer/login'));
+app.get('/dealer', (c) => c.redirect('/dealer/dashboard'));
+app.get('/admin', (c) => c.redirect('/admin/dashboard'));
 
 app.get('/dealer/login', (c) => {
 	return c.html(generateDealerLoginHtml());

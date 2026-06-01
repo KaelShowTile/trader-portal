@@ -109,7 +109,6 @@ export const generateDealerDashboardHtml = () => `
                 <thead>
                     <tr>
                         <th></th>
-                        <th>Product ID</th>
                         <th>Product Name</th>
                         <th>Your Price</th>
                     </tr>
@@ -142,7 +141,6 @@ export const generateDealerDashboardHtml = () => `
                         data: null,
                         defaultContent: ''
                     },
-                    { data: 'cht_product_id' },
                     { data: 'cht_product_name' },
                     { 
                         data: 'final_price',
